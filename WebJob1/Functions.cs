@@ -7,10 +7,15 @@ namespace PositionJob
     {
         // This function will get triggered/executed when a new message is written 
         // on an Azure Queue called queue.
-        public static void ProcessQueueMessage([QueueTrigger("queue")] string message, TextWriter log)
+        public static void ProcessBlobMessage([BlobTrigger("gismaincontainer/posdatarequest{name}")] TextReader message, TextWriter log)
         {
-            log.WriteLine(message);
+            log.WriteLine(message.ReadToEnd());
             log.WriteLine("Test");
+        }
+        public static void CopyBlob([BlobTrigger("gismaincontainer/posdatarequest{name}")] TextReader input,
+            [Blob("mycontainer/response-{name}")] out string output)
+        {
+            output = input.ReadToEnd() + "LOL";
         }
     }
 }
