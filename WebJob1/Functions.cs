@@ -17,5 +17,11 @@ namespace PositionJob
         {
             output = input.ReadToEnd() + "LOL";
         }
+
+        public static void ModifyQueueMessage([QueueTrigger("messagequeuemainuser")] string queueMessage,
+            [Queue("messagequeuemainuser")] out string outputQueueMessage)
+        {
+            outputQueueMessage = "Response";
+        }
     }
 }
