@@ -1,4 +1,5 @@
 ﻿using Microsoft.Azure.WebJobs;
+using SQLPositionFinder;
 
 namespace PositionJob
 {
@@ -20,7 +21,10 @@ namespace PositionJob
         public static void ModifyQueueMessage([QueueTrigger("messagequeuemainuser")] string queueMessage,
             [Queue("responsequeuemainuser")] out string outputQueueMessage)
         {
-            outputQueueMessage = "Response";
+
+            PositionFinder finder = new PositionFinder();
+            var result = finder.FindFloor(queueMessage);
+            outputQueueMessage = $"{result}";
         }
     }
 }

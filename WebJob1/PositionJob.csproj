@@ -83,6 +83,12 @@
     <None Include="Properties\PublishProfiles\GiSApp - Web Deploy.pubxml" />
     <None Include="Properties\webjob-publish-settings.json" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SQLPositionFinder\SQLPositionFinder.csproj">
+      <Project>{B875E470-BCC2-4AD5-BC73-3AEA19C4D1F5}</Project>
+      <Name>SQLPositionFinder</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.1.0.12\tools\webjobs.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.1.0.12\tools\webjobs.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

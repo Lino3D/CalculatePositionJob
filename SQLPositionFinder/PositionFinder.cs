@@ -18,7 +18,15 @@ namespace SQLPositionFinder
         }
         public int FindFloor(string BssidDataString)
         {
-            Algorithm algorithm = new Algorithm(MessageToList(BssidDataString).ToList());
+            Algorithm algorithm;
+            try
+            {
+                 algorithm = new Algorithm(MessageToList(BssidDataString).ToList());
+            }
+            catch(Exception e)
+            {
+                return -1;
+            }
             return algorithm.Process();            
         }
 
